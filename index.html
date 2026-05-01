@@ -3,19 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Erafox WebVM - Виртуальная машина в браузере</title>
+    <meta name="description" content="Виртуальная машина в браузере — запускай Linux, ReactOS, KolibriOS без установки">
+    <title>Erafox WebVM — Виртуальная машина онлайн</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACOSURBVDhPrZPRDYAgDESvZASHcARHcARHcARHcAQj4Q8hUIyt8SXNS8hdr13vQin1PwdEBBFxJLjfTES0bqoBkJG4igggImREbIhEJyLc2UfrUiXWVGYg4tCGiVVV1/btZWWm7GGAqJt21D4sjylK2aIyI/cyA32sQ1FmnkiYIzPSAJQxTuG/F7ADiFqPpADFDK8AAAAASUVORK5CYII=">
 </head>
 <body>
     <div class="container">
         <header>
             <h1>🦊 Erafox WebVM</h1>
-            <p>Виртуальная машина прямо в браузере — без скачиваний, без установки</p>
+            <p>Виртуальная машина прямо в браузере — без скачиваний, без установки софта</p>
         </header>
 
         <div class="main-grid">
             <!-- Панель управления -->
             <div class="control-panel">
+                <div class="section">
+                    <h3>💾 Сохранение диска</h3>
+                    <div class="storage-status">
+                        <span id="storageStatus">⚪ Не сохранено</span>
+                        <button id="saveDiskBtn" class="btn-small" disabled>Сохранить диск</button>
+                        <button id="deleteDiskBtn" class="btn-small btn-danger" disabled>Удалить сохранение</button>
+                    </div>
+                    <div class="info-text">Диск сохраняется в ваш браузер — после перезагрузки ВМ продолжит работу</div>
+                </div>
+
                 <div class="section">
                     <h3>📀 Загрузка ISO</h3>
                     <div class="upload-area" id="uploadArea">
@@ -23,12 +35,18 @@
                         <button id="uploadBtn" class="btn btn-primary">Выбрать ISO-файл</button>
                         <div id="isoInfo" class="info-text">Ничего не загружено</div>
                     </div>
+                    <div class="quick-iso">
+                        <p>📌 Быстрые образы (встроенные):</p>
+                        <button id="loadKolibri" class="btn-small">KolibriOS (графическая ОС)</button>
+                        <button id="loadTinyCore" class="btn-small">TinyCore Linux (GUI)</button>
+                        <button id="loadReactOS" class="btn-small">ReactOS (клон Windows)</button>
+                    </div>
                 </div>
 
                 <div class="section">
                     <h3>⚙️ Настройки ВМ</h3>
                     <div class="settings">
-                        <label>ОЗУ: <input type="range" id="ramSlider" min="128" max="4096" value="1024" step="128"> 
+                        <label>ОЗУ: <input type="range" id="ramSlider" min="128" max="2048" value="1024" step="128"> 
                         <span id="ramValue">1024</span> MB</label>
                         <label>Ядра: <select id="coresCount">
                             <option value="1">1 ядро</option>
@@ -74,7 +92,8 @@
                     <button id="ctrlAltDel" class="btn-small">Ctrl+Alt+Del</button>
                     <button id="sendEsc" class="btn-small">Esc</button>
                     <button id="sendTab" class="btn-small">Tab</button>
-                    <span class="note">Кликните на экран для фокуса клавиатуры</span>
+                    <button id="sendEnter" class="btn-small">Enter</button>
+                    <span class="note">Кликните на экран → клавиатура в ВМ</span>
                 </div>
             </div>
         </div>
