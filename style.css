@@ -1,0 +1,239 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: #eee;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+header p {
+    color: #aaa;
+    margin-top: 10px;
+}
+
+.main-grid {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 20px;
+}
+
+.control-panel {
+    background: rgba(0,0,0,0.5);
+    border-radius: 15px;
+    padding: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.section {
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.section h3 {
+    margin-bottom: 15px;
+    color: #4ecdc4;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: all 0.2s;
+    margin: 5px;
+}
+
+.btn-primary {
+    background: #4ecdc4;
+    color: #1a1a2e;
+}
+.btn-primary:hover { background: #3abfb5; transform: scale(1.02); }
+
+.btn-success {
+    background: #00b894;
+    color: white;
+}
+.btn-success:hover:not(:disabled) { background: #00a382; }
+
+.btn-danger {
+    background: #d63031;
+    color: white;
+}
+.btn-danger:hover:not(:disabled) { background: #c0392b; }
+
+.btn-warning {
+    background: #f39c12;
+    color: #1a1a2e;
+}
+.btn-warning:hover:not(:disabled) { background: #e67e22; }
+
+.btn-secondary {
+    background: #636e72;
+    color: white;
+}
+.btn-small {
+    background: #2d3436;
+    color: #dfe6e9;
+    border: none;
+    padding: 5px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0 5px;
+}
+.btn-small:hover { background: #3d4345; }
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.settings label {
+    display: flex;
+    justify-content: space-between;
+    margin: 12px 0;
+    align-items: center;
+}
+
+input[type="range"] {
+    width: 180px;
+}
+
+.status-info {
+    background: #0a0a1a;
+    padding: 10px;
+    border-radius: 8px;
+    font-family: monospace;
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.log-area {
+    background: #0a0a1a;
+    height: 150px;
+    overflow-y: auto;
+    padding: 8px;
+    font-family: monospace;
+    font-size: 11px;
+    border-radius: 8px;
+    color: #7f8c8d;
+}
+
+.vm-container {
+    background: #000;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+}
+
+.vm-screen {
+    position: relative;
+    background: #000;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.vm-screen canvas {
+    display: block;
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+}
+
+.vm-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid #333;
+    border-top-color: #4ecdc4;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.hidden {
+    display: none;
+}
+
+.vm-controls {
+    padding: 15px;
+    background: #1a1a1a;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.note {
+    margin-left: auto;
+    font-size: 12px;
+    color: #777;
+}
+
+.upload-area {
+    text-align: center;
+}
+
+.info-text {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #aaa;
+    word-break: break-all;
+}
+
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+@media (max-width: 768px) {
+    .main-grid {
+        grid-template-columns: 1fr;
+    }
+}

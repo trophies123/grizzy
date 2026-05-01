@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Erafox WebVM - Виртуальная машина в браузере</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🦊 Erafox WebVM</h1>
+            <p>Виртуальная машина прямо в браузере — без скачиваний, без установки</p>
+        </header>
+
+        <div class="main-grid">
+            <!-- Панель управления -->
+            <div class="control-panel">
+                <div class="section">
+                    <h3>📀 Загрузка ISO</h3>
+                    <div class="upload-area" id="uploadArea">
+                        <input type="file" id="isoUpload" accept=".iso,.img,.bin" style="display:none">
+                        <button id="uploadBtn" class="btn btn-primary">Выбрать ISO-файл</button>
+                        <div id="isoInfo" class="info-text">Ничего не загружено</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3>⚙️ Настройки ВМ</h3>
+                    <div class="settings">
+                        <label>ОЗУ: <input type="range" id="ramSlider" min="128" max="4096" value="1024" step="128"> 
+                        <span id="ramValue">1024</span> MB</label>
+                        <label>Ядра: <select id="coresCount">
+                            <option value="1">1 ядро</option>
+                            <option value="2" selected>2 ядра</option>
+                            <option value="4">4 ядра</option>
+                        </select></label>
+                        <label>Размер диска: <select id="diskSize">
+                            <option value="512">512 MB</option>
+                            <option value="1024">1 GB</option>
+                            <option value="2048" selected>2 GB</option>
+                            <option value="4096">4 GB</option>
+                        </select></label>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3>🎮 Управление</h3>
+                    <div class="button-group">
+                        <button id="startBtn" class="btn btn-success">▶ Запустить ВМ</button>
+                        <button id="stopBtn" class="btn btn-danger" disabled>⏹ Остановить</button>
+                        <button id="resetBtn" class="btn btn-warning" disabled>🔄 Перезагрузить</button>
+                        <button id="fullscreenBtn" class="btn btn-secondary" disabled>⛶ На весь экран</button>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3>ℹ️ Статус</h3>
+                    <div id="status" class="status-info">Готов к работе</div>
+                    <div id="log" class="log-area"></div>
+                </div>
+            </div>
+
+            <!-- Эмулятор экрана ВМ -->
+            <div class="vm-container">
+                <div id="vmScreen" class="vm-screen">
+                    <canvas id="vgaCanvas" width="800" height="600" style="width:100%; height:auto; background:#000;"></canvas>
+                    <div id="vmOverlay" class="vm-overlay hidden">
+                        <div class="spinner"></div>
+                        <p>Загрузка виртуальной машины...</p>
+                    </div>
+                </div>
+                <div class="vm-controls">
+                    <button id="ctrlAltDel" class="btn-small">Ctrl+Alt+Del</button>
+                    <button id="sendEsc" class="btn-small">Esc</button>
+                    <button id="sendTab" class="btn-small">Tab</button>
+                    <span class="note">Кликните на экран для фокуса клавиатуры</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tanishiking/v86@0.2.0/dist/v86.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
